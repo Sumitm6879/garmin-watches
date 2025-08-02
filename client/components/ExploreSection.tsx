@@ -1,4 +1,9 @@
 import { useState, useRef, MouseEvent } from 'react';
+import watch2 from '../assets/watch2.jpg';
+import watch3 from '../assets/watch3.jpg';
+import watch4 from '../assets/watch4.jpg';
+import watch5 from '../assets/watch5.jpg';
+import watch6 from '../assets/watch6.jpg';
 
 interface ImageData {
   nightSrc: string;
@@ -12,22 +17,22 @@ export function ExploreSection() {
   const containerRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const images: ImageData[] = [
-    {
-      nightSrc: 'https://images.pexels.com/photos/17243071/pexels-photo-17243071.jpeg?auto=compress&cs=tinysrgb&w=800',
-      daySrc: 'https://images.pexels.com/photos/17243071/pexels-photo-17243071.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-      alt: 'Mountain canyon landscape'
-    },
-    {
-      nightSrc: 'https://images.pexels.com/photos/26180301/pexels-photo-26180301.jpeg?auto=compress&cs=tinysrgb&w=800',
-      daySrc: 'https://images.pexels.com/photos/26180301/pexels-photo-26180301.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-      alt: 'Snow-covered mountain peak'
-    },
-    {
-      nightSrc: 'https://images.pexels.com/photos/279571/pexels-photo-279571.jpeg?auto=compress&cs=tinysrgb&w=800',
-      daySrc: 'https://images.pexels.com/photos/279571/pexels-photo-279571.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-      alt: 'Dramatic mountain peaks'
-    }
-  ];
+  {
+    nightSrc: watch2,
+    daySrc: watch2,
+    alt: 'A description of your first image'
+  },
+  {
+    nightSrc:watch3,
+    daySrc: watch3,
+    alt: 'A description of your second image'
+  },
+  {
+    nightSrc: watch4,
+    daySrc: watch4,
+    alt: 'A description of your third image'
+  }
+];
 
   const handleMouseMove = (e: MouseEvent, index: number) => {
     const container = containerRefs.current[index];
