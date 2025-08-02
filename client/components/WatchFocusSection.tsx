@@ -8,18 +8,18 @@ interface WatchFocusSectionProps {
   reverse?: boolean;
 }
 
-export function WatchFocusSection({ 
-  title, 
-  features, 
-  imageSrc, 
-  imageAlt, 
-  reverse = false 
+export function WatchFocusSection({
+  title,
+  features,
+  imageSrc,
+  imageAlt,
+  reverse = false
 }: WatchFocusSectionProps) {
   const [revealedText, setRevealedText] = useState('');
   const sectionRef = useRef<HTMLDivElement>(null);
-  
+
   const fullText = "CONQUER YOUR SUMMIT";
-  
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -57,11 +57,11 @@ export function WatchFocusSection({
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/80"></div>
       </div>
-      
+
       <div className="relative z-10 min-h-screen flex items-center">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <div className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-center ${reverse ? 'lg:grid-flow-col-dense' : ''}`}>
-            
+
             {/* Progressive Text Side */}
             <div className={`${reverse ? 'lg:col-start-2' : ''}`}>
               <div className="text-left">
@@ -74,7 +74,7 @@ export function WatchFocusSection({
                 </div>
               </div>
             </div>
-            
+
             {/* Watch Focus Side */}
             <div className={`relative ${reverse ? 'lg:col-start-1' : ''}`}>
               {/* 3D Watch Container */}
@@ -84,7 +84,7 @@ export function WatchFocusSection({
                   <div className="w-80 h-80 mx-auto relative transform hover:scale-105 transition-transform duration-500">
                     {/* Watch Shadow */}
                     <div className="absolute inset-0 bg-gradient-radial from-white/20 to-transparent rounded-full blur-2xl transform translate-y-8 scale-110"></div>
-                    
+
                     {/* Watch Body */}
                     <div className="relative w-full h-full bg-gradient-to-br from-slate-700 via-slate-800 to-black rounded-full border-8 border-slate-600 shadow-2xl">
                       {/* Watch Screen */}
@@ -96,13 +96,13 @@ export function WatchFocusSection({
                           </div>
                         </div>
                       </div>
-                      
+
                       {/* Watch Crown */}
                       <div className="absolute right-0 top-1/2 -translate-y-1/2 w-6 h-8 bg-slate-600 rounded-r-lg transform translate-x-2"></div>
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Feature Callouts */}
                 <div className="absolute inset-0 pointer-events-none">
                   {features.map((feature, index) => {
@@ -112,7 +112,7 @@ export function WatchFocusSection({
                       { bottom: '20%', left: '-15%' },
                       { bottom: '10%', right: '-20%' }
                     ];
-                    
+
                     return (
                       <div
                         key={index}
