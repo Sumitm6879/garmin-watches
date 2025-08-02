@@ -5,6 +5,107 @@ import { ExploreSection } from '../components/ExploreSection';
 import { WatchFocusSection } from '../components/WatchFocusSection';
 import { SummitShowcase } from '../components/SummitShowcase';
 
+
+import watch5 from '../assets/watch5.jpg';
+import watch6 from '../assets/watch6.jpg';
+import watch13 from '../assets/watch13.jpg';
+import watch14 from '../assets/watch14.jpg';
+import watch15 from '../assets/watch15.jpeg';
+import watch16 from '../assets/watch16.jpg';
+import watch17 from '../assets/watch17.jpg';
+import watch18 from '../assets/watch18.jpg';
+import watch19 from '../assets/watch19.jpg';
+import watch20 from '../assets/watch20.jpg';
+import watch21 from '../assets/watch21.jpg';
+import watch22 from '../assets/watch22.jpg';
+
+const watchesData = [
+  {
+    title: "Tactical Commander",
+    edition: "MILITARY EDITION",
+    imageSrc: watch5,
+    imageAlt: "Tactical Commander Watch", 
+    features: ["Night Vision", "Tactical GPS", "Encrypted Comms", "Solar Charging"]
+  },
+  {
+    title: "Elite Chronograph",
+    edition: "LUXURY EDITION",
+    imageSrc: watch6,
+    imageAlt: "Elite Chronograph Watch", 
+    features: ["Swiss Movement", "Sapphire Crystal", "Titanium Build", "Perpetual Calendar"]
+  },
+  {
+    title: "Elite Chronograph",
+    edition: "LUXURY EDITION",
+    imageSrc: watch13,
+    imageAlt: "Elite Chronograph Watch", 
+    features: ["Swiss Movement", "Sapphire Crystal", "Titanium Build", "Perpetual Calendar"]
+  },
+  {
+    title: "Elite Chronograph",
+    edition: "LUXURY EDITION",
+    imageSrc: watch14,
+    imageAlt: "Elite Chronograph Watch", 
+    features: ["Swiss Movement", "Sapphire Crystal", "Titanium Build", "Perpetual Calendar"]
+  },
+  {
+    title: "Elite Chronograph",
+    edition: "LUXURY EDITION",
+    imageSrc: watch15,
+    imageAlt: "Elite Chronograph Watch", 
+    features: ["Swiss Movement", "Sapphire Crystal", "Titanium Build", "Perpetual Calendar"]
+  },
+  {
+    title: "Elite Chronograph",
+    edition: "LUXURY EDITION",
+    imageSrc: watch16,
+    imageAlt: "Elite Chronograph Watch", 
+    features: ["Swiss Movement", "Sapphire Crystal", "Titanium Build", "Perpetual Calendar"]
+  },
+  {
+    title: "Elite Chronograph",
+    edition: "LUXURY EDITION",
+    imageSrc: watch17,
+    imageAlt: "Elite Chronograph Watch", 
+    features: ["Swiss Movement", "Sapphire Crystal", "Titanium Build", "Perpetual Calendar"]
+  },
+  {
+    title: "Elite Chronograph",
+    edition: "LUXURY EDITION",
+    imageSrc: watch18,
+    imageAlt: "Elite Chronograph Watch", 
+    features: ["Swiss Movement", "Sapphire Crystal", "Titanium Build", "Perpetual Calendar"]
+  },
+  {
+    title: "Elite Chronograph",
+    edition: "LUXURY EDITION",
+    imageSrc: watch19,
+    imageAlt: "Elite Chronograph Watch", 
+    features: ["Swiss Movement", "Sapphire Crystal", "Titanium Build", "Perpetual Calendar"]
+  },
+  {
+    title: "Elite Chronograph",
+    edition: "LUXURY EDITION",
+    imageSrc: watch20,
+    imageAlt: "Elite Chronograph Watch", 
+    features: ["Swiss Movement", "Sapphire Crystal", "Titanium Build", "Perpetual Calendar"]
+  },
+  {
+    title: "Elite Chronograph",
+    edition: "LUXURY EDITION",
+    imageSrc: watch21,
+    imageAlt: "Elite Chronograph Watch", 
+    features: ["Swiss Movement", "Sapphire Crystal", "Titanium Build", "Perpetual Calendar"]
+  },
+  {
+    title: "Elite Chronograph",
+    edition: "LUXURY EDITION",
+    imageSrc: watch22,
+    imageAlt: "Elite Chronograph Watch", 
+    features: ["Swiss Movement", "Sapphire Crystal", "Titanium Build", "Perpetual Calendar"]
+  },
+];
+
 export default function Index() {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -18,40 +119,12 @@ export default function Index() {
       {isLoading && <PreLoader onComplete={handlePreloaderComplete} />}
 
       <div className={`${isLoading ? 'hidden' : 'block'}`}>
-        {/* Hero Section */}
         <HeroSection />
-
-        {/* Explore Section */}
         <ExploreSection />
 
-        {/* Watch Focus Section 1 - Pulse Ox */}
-        <WatchFocusSection
-          title="PULSE OX"
-          features={[
-            "SpO2 Monitoring",
-            "Altitude Acclimation",
-            "Real-time Alerts",
-            "Performance Tracking"
-          ]}
-          imageSrc="https://images.pexels.com/photos/3077882/pexels-photo-3077882.jpeg?auto=compress&cs=tinysrgb&w=1200"
-          imageAlt="Rock climber scaling cliff at sunset"
-        />
+        {/* Replace the second section with carousel */}
+        <WatchFocusSection watches={watchesData} />
 
-        {/* Watch Focus Section 2 - Solar Charging */}
-        <WatchFocusSection
-          title="SOLAR"
-          features={[
-            "Unlimited Battery",
-            "Power Save Mode",
-            "Quick Charge",
-            "Eco-Friendly"
-          ]}
-          imageSrc="https://images.pexels.com/photos/5916412/pexels-photo-5916412.jpeg?auto=compress&cs=tinysrgb&w=1200"
-          imageAlt="Climber on colorful indoor wall"
-          reverse={true}
-        />
-
-        {/* Summit Showcase */}
         <SummitShowcase />
       </div>
     </>
