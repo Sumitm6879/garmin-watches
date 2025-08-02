@@ -17,22 +17,22 @@ export function ExploreSection() {
   const containerRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const images: ImageData[] = [
-  {
-    nightSrc: watch2,
-    daySrc: watch2,
-    alt: 'A description of your first image'
-  },
-  {
-    nightSrc:watch3,
-    daySrc: watch3,
-    alt: 'A description of your second image'
-  },
-  {
-    nightSrc: watch4,
-    daySrc: watch4,
-    alt: 'A description of your third image'
-  }
-];
+    {
+      nightSrc: watch2,
+      daySrc: watch2,
+      alt: 'A description of your first image'
+    },
+    {
+      nightSrc: watch4,
+      daySrc: watch4,
+      alt: 'A description of your second image'
+    },
+    {
+      nightSrc: watch3,
+      daySrc: watch3,
+      alt: 'A description of your third image'
+    }
+  ];
 
   const handleMouseMove = (e: MouseEvent, index: number) => {
     const container = containerRefs.current[index];
@@ -96,22 +96,23 @@ export function ExploreSection() {
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   clipPath: `polygon(
-                    calc(var(--mouse-x, 50%) - 15% + 8px) calc(var(--mouse-y, 50%) - 18% + 5px),
-                    calc(var(--mouse-x, 50%) - 8% - 6px) calc(var(--mouse-y, 50%) - 22% - 4px),
-                    calc(var(--mouse-x, 50%) + 3% + 10px) calc(var(--mouse-y, 50%) - 25% + 7px),
-                    calc(var(--mouse-x, 50%) + 12% - 4px) calc(var(--mouse-y, 50%) - 15% - 8px),
-                    calc(var(--mouse-x, 50%) + 18% + 6px) calc(var(--mouse-y, 50%) - 3% + 9px),
-                    calc(var(--mouse-x, 50%) + 20% - 12px) calc(var(--mouse-y, 50%) + 8% - 3px),
-                    calc(var(--mouse-x, 50%) + 15% + 8px) calc(var(--mouse-y, 50%) + 20% + 11px),
-                    calc(var(--mouse-x, 50%) + 5% - 9px) calc(var(--mouse-y, 50%) + 25% - 6px),
-                    calc(var(--mouse-x, 50%) - 4% + 5px) calc(var(--mouse-y, 50%) + 22% + 8px),
-                    calc(var(--mouse-x, 50%) - 15% - 7px) calc(var(--mouse-y, 50%) + 12% - 10px),
-                    calc(var(--mouse-x, 50%) - 20% + 9px) calc(var(--mouse-y, 50%) + 2% + 12px),
-                    calc(var(--mouse-x, 50%) - 18% - 5px) calc(var(--mouse-y, 50%) - 8% - 4px)
+                  calc(var(--mouse-x, 50%) - 20%) calc(var(--mouse-y, 50%) - 25%),
+                  calc(var(--mouse-x, 50%) - 10%) calc(var(--mouse-y, 50%) - 35%),
+                  calc(var(--mouse-x, 50%) + 5%) calc(var(--mouse-y, 50%) - 32%),
+                  calc(var(--mouse-x, 50%) + 18%) calc(var(--mouse-y, 50%) - 20%),
+                  calc(var(--mouse-x, 50%) + 25%) calc(var(--mouse-y, 50%) - 5%),
+                  calc(var(--mouse-x, 50%) + 22%) calc(var(--mouse-y, 50%) + 10%),
+                  calc(var(--mouse-x, 50%) + 10%) calc(var(--mouse-y, 50%) + 22%),
+                  calc(var(--mouse-x, 50%) - 5%) calc(var(--mouse-y, 50%) + 28%),
+                  calc(var(--mouse-x, 50%) - 15%) calc(var(--mouse-y, 50%) + 20%),
+                  calc(var(--mouse-x, 50%) - 25%) calc(var(--mouse-y, 50%) + 5%),
+                  calc(var(--mouse-x, 50%) - 22%) calc(var(--mouse-y, 50%) - 10%),
+                  calc(var(--mouse-x, 50%) - 20%) calc(var(--mouse-y, 50%) - 25%)
                   )`,
                   transition: 'clip-path 0.1s ease-out, opacity 0.3s ease'
                 }}
               />
+
             </div>
           ))}
         </div>

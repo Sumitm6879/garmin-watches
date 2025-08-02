@@ -11,32 +11,23 @@
   :root {
     --background: 0 0% 5%;
     --foreground: 0 0% 95%;
-
     --card: 0 0% 8%;
     --card-foreground: 0 0% 95%;
-
     --popover: 0 0% 8%;
     --popover-foreground: 0 0% 95%;
-
     --primary: 0 0% 95%;
     --primary-foreground: 0 0% 5%;
-
     --secondary: 0 0% 12%;
     --secondary-foreground: 0 0% 90%;
-
     --muted: 0 0% 15%;
     --muted-foreground: 0 0% 65%;
-
     --accent: 25 95% 53%;
     --accent-foreground: 0 0% 5%;
-
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 95%;
-
     --border: 0 0% 20%;
     --input: 0 0% 15%;
     --ring: 25 95% 53%;
-
     --radius: 0.75rem;
   }
 }
@@ -105,197 +96,175 @@
   .font-merriweather {
     font-family: 'Merriweather', serif;
   }
-}
 
-
-/* Custom animations for adventure watch */
-@keyframes countUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes wipe-left {
-  0% { transform: translateX(-100%) scaleY(0.8); }
-  50% { transform: translateX(-10%) scaleY(1.2); }
-  100% { transform: translateX(100%) scaleY(0.9); }
-}
-
-@keyframes wipe-right {
-  0% { transform: translateX(100%) scaleY(0.8); }
-  50% { transform: translateX(10%) scaleY(1.2); }
-  100% { transform: translateX(-100%) scaleY(0.9); }
-}
-
-.animate-wipe {
-  animation: wipe-left 1s ease-in-out forwards, wipe-right 1s ease-in-out forwards;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
+  /* Custom animations for adventure watch */
+  @keyframes countUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
-  to {
+
+  @keyframes wipe-left {
+    0% { transform: translateX(-100%) scaleY(0.8); }
+    50% { transform: translateX(-10%) scaleY(1.2); }
+    100% { transform: translateX(100%) scaleY(0.9); }
+  }
+
+  @keyframes wipe-right {
+    0% { transform: translateX(100%) scaleY(0.8); }
+    50% { transform: translateX(10%) scaleY(1.2); }
+    100% { transform: translateX(-100%) scaleY(0.9); }
+  }
+
+  .animate-wipe {
+    animation: wipe-left 1s ease-in-out forwards, wipe-right 1s ease-in-out forwards;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  @keyframes parallaxUp {
+    to { transform: translateY(-50px); }
+  }
+
+  .animate-count-up {
+    animation: countUp 0.5s ease-out;
+  }
+
+  .animate-blink {
+    animation: blink 1s infinite;
+  }
+
+  .parallax-element {
+    animation: parallaxUp linear;
+    animation-timeline: scroll();
+  }
+
+  /* Enhanced organic spotlight mask effect */
+  .spotlight-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .spotlight-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: var(--day-image);
+    background-size: cover;
+    background-position: center;
+    clip-path: circle(0px at 50% 50%);
+    transition: clip-path 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .spotlight-container:hover .spotlight-mask {
+    clip-path: circle(150px at var(--x, 50%) var(--y, 50%));
+  }
+
+  /* Infinite marquee */
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }
+
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+
+  /* Letter reveal animation */
+  .letter-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.3s ease;
+  }
+
+  .letter-reveal.revealed {
     opacity: 1;
     transform: translateY(0);
   }
-}
 
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
-}
+  .letter-reveal.fade-out {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
 
-@keyframes parallaxUp {
-  to { transform: translateY(-50px); }
-}
-
-.animate-count-up {
-  animation: countUp 0.5s ease-out;
-}
-
-.animate-blink {
-  animation: blink 1s infinite;
-}
-
-.parallax-element {
-  animation: parallaxUp linear;
-  animation-timeline: scroll();
-}
-
-/* Enhanced organic spotlight mask effect */
-.spotlight-container {
-  position: relative;
-  overflow: hidden;
-}
-
-.spotlight-mask {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: var(--day-image);
-  background-size: cover;
-  background-position: center;
-  clip-path: polygon(0% 0%, 0% 0%, 0% 0%, 0% 0%);
-  transition: clip-path 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.spotlight-container:hover .spotlight-mask {
-  clip-path: var(--organic-shape-hover,
-    polygon(
-      calc(var(--x, 50%) - 120px) calc(var(--y, 50%) - 80px),
-      calc(var(--x, 50%) + 80px) calc(var(--y, 50%) - 110px),
-      calc(var(--x, 50%) + 140px) calc(var(--y, 50%) - 30px),
-      calc(var(--x, 50%) + 110px) calc(var(--y, 50%) + 70px),
-      calc(var(--x, 50%) + 30px) calc(var(--y, 50%) + 120px),
-      calc(var(--x, 50%) - 60px) calc(var(--y, 50%) + 90px),
-      calc(var(--x, 50%) - 130px) calc(var(--y, 50%) + 20px),
-      calc(var(--x, 50%) - 100px) calc(var(--y, 50%) - 40px)
-    )
-  );
-}
-
-/* Infinite marquee */
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-.animate-marquee {
-  animation: marquee 30s linear infinite;
-}
-
-.animate-marquee:hover {
-  animation-play-state: paused;
-}
-
-/* Letter reveal animation */
-.letter-reveal {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.3s ease;
-}
-
-.letter-reveal.revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.letter-reveal.fade-out {
-  opacity: 0;
-  transform: translateY(-50px);
-}
-
-.fluid-reveal-mask {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
+  .fluid-reveal-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    clip-path: circle(0px at 50% 50%);
+    transition: clip-path 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
 
 .group:hover .fluid-reveal-mask {
-  clip-path: polygon(
-    calc(var(--mouse-x, 50%) - 25% + 15px) calc(var(--mouse-y, 50%) - 30% + 12px),
-    calc(var(--mouse-x, 50%) - 12% - 12px) calc(var(--mouse-y, 50%) - 35% - 8px),
-    calc(var(--mouse-x, 50%) + 6% + 18px) calc(var(--mouse-y, 50%) - 38% + 15px),
-    calc(var(--mouse-x, 50%) + 22% - 10px) calc(var(--mouse-y, 50%) - 28% - 15px),
-    calc(var(--mouse-x, 50%) + 32% + 12px) calc(var(--mouse-y, 50%) - 8% + 18px),
-    calc(var(--mouse-x, 50%) + 35% - 18px) calc(var(--mouse-y, 50%) + 12% - 10px),
-    calc(var(--mouse-x, 50%) + 28% + 15px) calc(var(--mouse-y, 50%) + 32% + 20px),
-    calc(var(--mouse-x, 50%) + 8% - 15px) calc(var(--mouse-y, 50%) + 38% - 12px),
-    calc(var(--mouse-x, 50%) - 8% + 10px) calc(var(--mouse-y, 50%) + 35% + 15px),
-    calc(var(--mouse-x, 50%) - 25% - 18px) calc(var(--mouse-y, 50%) + 18% - 12px),
-    calc(var(--mouse-x, 50%) - 35% + 15px) calc(var(--mouse-y, 50%) + 2% + 22px),
-    calc(var(--mouse-x, 50%) - 32% - 8px) calc(var(--mouse-y, 50%) - 15% - 14px)
-  ) !important;
+  clip-path: circle(80px at var(--mouse-x, 50%) var(--mouse-y, 50%)) !important;
   animation: fluidRipple 0.6s ease-out;
 }
 
-@keyframes fluidRipple {
-  0% {
-    transform: scale(0.8) rotate(-1deg);
-    filter: blur(2px);
-  }
-  40% {
-    transform: scale(1.05) rotate(0.5deg);
-    filter: blur(1px);
-  }
-  70% {
-    transform: scale(0.98) rotate(-0.2deg);
-    filter: blur(0.5px);
-  }
-  100% {
-    transform: scale(1) rotate(0deg);
-    filter: blur(0px);
-  }
-}
 
-/* Additional ripple layers for more organic effect */
-.fluid-reveal-mask::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: inherit;
-  clip-path: circle(25px at var(--mouse-x, 50%) var(--mouse-y, 50%));
-  opacity: 0.3;
-  filter: blur(1px);
-  animation: innerRipple 0.4s ease-out;
-}
-
-@keyframes innerRipple {
-  0% {
-    clip-path: circle(5px at var(--mouse-x, 50%) var(--mouse-y, 50%));
-    opacity: 0.6;
+  @keyframes fluidRipple {
+    0% {
+      transform: scale(0.8);
+      filter: blur(2px);
+    }
+    40% {
+      transform: scale(1.05);
+      filter: blur(1px);
+    }
+    70% {
+      transform: scale(0.98);
+      filter: blur(0.5px);
+    }
+    100% {
+      transform: scale(1);
+      filter: blur(0px);
+    }
   }
-  100% {
+
+  /* Additional ripple layers for more organic effect */
+  .fluid-reveal-mask::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
     clip-path: circle(25px at var(--mouse-x, 50%) var(--mouse-y, 50%));
     opacity: 0.3;
+    filter: blur(1px);
+    animation: innerRipple 0.4s ease-out;
+  }
+
+  @keyframes innerRipple {
+    0% {
+      clip-path: circle(5px at var(--mouse-x, 50%) var(--mouse-y, 50%));
+      opacity: 0.6;
+    }
+    100% {
+      clip-path: circle(25px at var(--mouse-x, 50%) var(--mouse-y, 50%));
+      opacity: 0.3;
+    }
   }
 }
