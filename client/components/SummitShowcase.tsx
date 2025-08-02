@@ -12,6 +12,7 @@ export function SummitShowcase() {
   const [isVisible, setIsVisible] = useState(false);
   const [visibleSections, setVisibleSections] = useState({});
 
+
   const watchImages = [
     {
       src: watch7,
@@ -55,8 +56,10 @@ export function SummitShowcase() {
     }
   ];
 
+
   useEffect(() => {
     setIsVisible(true);
+
 
     // Initialize visible sections to prevent undefined errors
     setVisibleSections({
@@ -64,6 +67,7 @@ export function SummitShowcase() {
       section2: false,
       section3: false
     });
+
 
     // Add a small delay to ensure elements are rendered
     const timer = setTimeout(() => {
@@ -82,42 +86,52 @@ export function SummitShowcase() {
         { threshold: 0.2, rootMargin: '0px 0px -50px 0px' }
       );
 
+
       const sections = document.querySelectorAll('[data-section]');
       sections.forEach(section => observer.observe(section));
+
 
       return () => observer.disconnect();
     }, 100);
 
+
     return () => clearTimeout(timer);
   }, []);
+
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % watchImages.length);
   };
 
+
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev - 1 + watchImages.length) % watchImages.length);
   };
+
 
   const goToSlide = (index) => {
     setCurrentIndex(index);
   };
 
+
   return (
     <section className="py-32 bg-gradient-to-b from-black to-slate-900 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
 
+
         <div className={`text-center mb-16 transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
           <h2 className="text-4xl md:text-6xl font-bold text-white mb-4">
             Built for Every
-            <span className="text-yellow-400"> Adventure</span>
+            <span className="text-orange-400"> Adventure</span>
           </h2>
           <p className="text-white/70 text-lg max-w-2xl mx-auto">
             See how elite athletes push their limits with the Fenix Summit Edition
           </p>
         </div>
 
+
         <div className={`grid lg:grid-cols-5 gap-8 mb-20 transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}>
+
 
           <div className="lg:col-span-3 relative">
             <div className="aspect-[4/5] relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800 to-black group">
@@ -128,6 +142,7 @@ export function SummitShowcase() {
                   className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+
 
                 <button
                   onClick={prevSlide}
@@ -142,11 +157,13 @@ export function SummitShowcase() {
                   →
                 </button>
 
-                <div className="absolute top-6 right-6 w-24 h-24 border-2 border-yellow-400 rounded-full flex items-center justify-center bg-black/60 backdrop-blur-sm">
-                  <div className="text-yellow-400 text-xs font-bold text-center">
-                    FENIX<br/>SUMMIT<br/>EDITION
+
+                <div className="absolute top-6 right-6 w-24 h-24 border-2 border-orange-400 rounded-full flex items-center justify-center bg-black/60 backdrop-blur-sm">
+                  <div className="text-orange-400 text-xs font-bold text-center">
+                    FENIX<br />SUMMIT<br />EDITION
                   </div>
                 </div>
+
 
                 <div className="absolute bottom-0 left-0 right-0 p-8">
                   <h3 className="text-3xl font-bold text-white mb-2 transform transition-all duration-500">
@@ -156,17 +173,19 @@ export function SummitShowcase() {
                 </div>
               </div>
 
+
               <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-3">
                 {watchImages.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => goToSlide(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex ? 'bg-yellow-400 scale-125' : 'bg-white/40 hover:bg-white/60'}`}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex ? 'bg-orange-400 scale-125' : 'bg-white/40 hover:bg-white/60'}`}
                   />
                 ))}
               </div>
             </div>
           </div>
+
 
           <div className="lg:col-span-2 space-y-6">
             <div className="space-y-4">
@@ -187,40 +206,43 @@ export function SummitShowcase() {
               ))}
             </div>
 
-            <div className="bg-gradient-to-r from-yellow-400/20 to-orange-400/20 backdrop-blur-sm border border-yellow-400/30 rounded-xl p-6 mt-8">
+
+            <div className="bg-gradient-to-r from-orange-400/20 to-orange-400/20 backdrop-blur-sm border border-orange-400/30 rounded-xl p-6 mt-8">
               <h4 className="text-xl font-bold text-white mb-3">
                 Perfect for {watchImages[currentIndex].pose}s
               </h4>
               <p className="text-white/80 text-sm mb-4">
                 Engineered to excel in your demanding environment with cutting-edge technology.
               </p>
-              <button className="w-full bg-yellow-400 hover:bg-yellow-300 text-black font-bold py-3 px-6 rounded-lg transition-all duration-300 hover:scale-105">
+              <button className="w-full bg-orange-400 hover:bg-orange-300 text-black font-bold py-3 px-6 rounded-lg transition-all duration-300 hover:scale-105">
                 Learn More
               </button>
             </div>
 
+
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
               <div className="grid grid-cols-2 gap-4 text-center">
                 <div>
-                  <div className="text-2xl font-bold text-yellow-400">40+</div>
+                  <div className="text-2xl font-bold text-orange-400">40+</div>
                   <div className="text-white/70 text-xs">Sport Modes</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-yellow-400">36d</div>
+                  <div className="text-2xl font-bold text-orange-400">36d</div>
                   <div className="text-white/70 text-xs">Battery Life</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-yellow-400">100m</div>
+                  <div className="text-2xl font-bold text-orange-400">100m</div>
                   <div className="text-white/70 text-xs">Water Rating</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-yellow-400">GPS</div>
+                  <div className="text-2xl font-bold text-orange-400">GPS</div>
                   <div className="text-white/70 text-xs">Multi-GNSS</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
 
         <div className="space-y-32 mb-32">
           <div className="relative" data-section="section1">
@@ -229,27 +251,27 @@ export function SummitShowcase() {
                 <div className={`space-y-6 transform transition-all duration-1000 delay-200 ${visibleSections.section1 ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'}`}>
                   <h3 className="text-4xl font-bold text-white">
                     Extreme Conditions
-                    <span className="text-yellow-400"> Conquered</span>
+                    <span className="text-orange-400"> Conquered</span>
                   </h3>
                   <p className="text-white/70 text-lg leading-relaxed">
                     From Arctic expeditions to desert marathons, the Fenix Summit Edition thrives where others fail. Built to withstand temperatures from -20°C to 60°C.
                   </p>
                   <div className="space-y-4">
                     <div className={`flex items-center space-x-3 transform transition-all duration-700 delay-400 ${visibleSections.section1 ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}>
-                      <div className="w-8 h-8 bg-yellow-400/20 rounded-full flex items-center justify-center">
-                        <span className="text-yellow-400 text-sm">✓</span>
+                      <div className="w-8 h-8 bg-orange-400/20 rounded-full flex items-center justify-center">
+                        <span className="text-orange-400 text-sm">✓</span>
                       </div>
                       <span className="text-white">Military-grade durability (MIL-STD-810)</span>
                     </div>
                     <div className={`flex items-center space-x-3 transform transition-all duration-700 delay-500 ${visibleSections.section1 ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}>
-                      <div className="w-8 h-8 bg-yellow-400/20 rounded-full flex items-center justify-center">
-                        <span className="text-yellow-400 text-sm">✓</span>
+                      <div className="w-8 h-8 bg-orange-400/20 rounded-full flex items-center justify-center">
+                        <span className="text-orange-400 text-sm">✓</span>
                       </div>
                       <span className="text-white">100m water resistance</span>
                     </div>
                     <div className={`flex items-center space-x-3 transform transition-all duration-700 delay-600 ${visibleSections.section1 ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}>
-                      <div className="w-8 h-8 bg-yellow-400/20 rounded-full flex items-center justify-center">
-                        <span className="text-yellow-400 text-sm">✓</span>
+                      <div className="w-8 h-8 bg-orange-400/20 rounded-full flex items-center justify-center">
+                        <span className="text-orange-400 text-sm">✓</span>
                       </div>
                       <span className="text-white">Scratch-resistant sapphire crystal</span>
                     </div>
@@ -259,20 +281,21 @@ export function SummitShowcase() {
               <div className="order-1 lg:order-2">
                 <div className={`aspect-[4/5] relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800 to-black group transform transition-all duration-1000 delay-300 ${visibleSections.section1 ? 'translate-x-0 opacity-100 scale-100' : 'translate-x-8 opacity-0 scale-95'}`}>
                   <img
-                    src= {watch10}
+                    src={watch10}
                     alt="Extreme weather mountaineering"
                     className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                  <div className="absolute top-6 right-6 w-20 h-20 border-2 border-yellow-400 rounded-full flex items-center justify-center bg-black/60 backdrop-blur-sm">
-                    <div className="text-yellow-400 text-xs font-bold text-center">
-                      TESTED<br/>EXTREME
+                  <div className="absolute top-6 right-6 w-20 h-20 border-2 border-orange-400 rounded-full flex items-center justify-center bg-black/60 backdrop-blur-sm">
+                    <div className="text-orange-400 text-xs font-bold text-center">
+                      TESTED<br />EXTREME
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
 
           <div className="relative" data-section="section2">
             <div className={`grid lg:grid-cols-2 gap-12 items-center transform transition-all duration-1000 ${visibleSections.section2 ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}>
@@ -289,9 +312,9 @@ export function SummitShowcase() {
                     Your browser does not support the video tag.
                   </video>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                  <div className="absolute top-6 left-6 w-20 h-20 border-2 border-yellow-400 rounded-full flex items-center justify-center bg-black/60 backdrop-blur-sm">
-                    <div className="text-yellow-400 text-xs font-bold text-center">
-                      REAL-TIME<br/>METRICS
+                  <div className="absolute top-6 left-6 w-20 h-20 border-2 border-orange-400 rounded-full flex items-center justify-center bg-black/60 backdrop-blur-sm">
+                    <div className="text-orange-400 text-xs font-bold text-center">
+                      REAL-TIME<br />METRICS
                     </div>
                   </div>
                 </div>
@@ -300,26 +323,26 @@ export function SummitShowcase() {
                 <div className={`space-y-6 transform transition-all duration-1000 delay-200 ${visibleSections.section2 ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'}`}>
                   <h3 className="text-4xl font-bold text-white">
                     Performance
-                    <span className="text-yellow-400"> Analytics</span>
+                    <span className="text-orange-400"> Analytics</span>
                   </h3>
                   <p className="text-white/70 text-lg leading-relaxed">
                     Advanced biometric sensors and AI-powered insights help you optimize every training session and recovery period.
                   </p>
                   <div className={`grid grid-cols-2 gap-6 transform transition-all duration-1000 delay-400 ${visibleSections.section2 ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}>
                     <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 text-center hover:bg-white/10 transition-all duration-300">
-                      <div className="text-2xl font-bold text-yellow-400 mb-1">24/7</div>
+                      <div className="text-2xl font-bold text-orange-400 mb-1">24/7</div>
                       <div className="text-white/70 text-sm">Health Monitoring</div>
                     </div>
                     <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 text-center hover:bg-white/10 transition-all duration-300">
-                      <div className="text-2xl font-bold text-yellow-400 mb-1">VO2</div>
+                      <div className="text-2xl font-bold text-orange-400 mb-1">VO2</div>
                       <div className="text-white/70 text-sm">Max Tracking</div>
                     </div>
                     <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 text-center hover:bg-white/10 transition-all duration-300">
-                      <div className="text-2xl font-bold text-yellow-400 mb-1">RHR</div>
+                      <div className="text-2xl font-bold text-orange-400 mb-1">RHR</div>
                       <div className="text-white/70 text-sm">Recovery Rate</div>
                     </div>
                     <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 text-center hover:bg-white/10 transition-all duration-300">
-                      <div className="text-2xl font-bold text-yellow-400 mb-1">AI</div>
+                      <div className="text-2xl font-bold text-orange-400 mb-1">AI</div>
                       <div className="text-white/70 text-sm">Training Coach</div>
                     </div>
                   </div>
@@ -328,18 +351,19 @@ export function SummitShowcase() {
             </div>
           </div>
 
+
           <div className="relative" data-section="section3">
             <div className={`grid lg:grid-cols-2 gap-12 items-center transform transition-all duration-1000 ${visibleSections.section3 ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}>
               <div className="order-2 lg:order-1">
                 <div className={`space-y-6 transform transition-all duration-1000 delay-200 ${visibleSections.section3 ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'}`}>
                   <h3 className="text-4xl font-bold text-white">
                     Navigate with
-                    <span className="text-yellow-400"> Confidence</span>
+                    <span className="text-orange-400"> Confidence</span>
                   </h3>
                   <p className="text-white/70 text-lg leading-relaxed">
                     Multi-GNSS satellite systems and preloaded topographic maps ensure you never lose your way, while safety features keep you protected.
                   </p>
-                  <div className={`bg-gradient-to-r from-yellow-400/10 to-orange-400/10 backdrop-blur-sm border border-yellow-400/20 rounded-xl p-6 transform transition-all duration-1000 delay-400 ${visibleSections.section3 ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}>
+                  <div className={`bg-gradient-to-r from-orange-400/10 to-orange-400/10 backdrop-blur-sm border border-orange-400/20 rounded-xl p-6 transform transition-all duration-1000 delay-400 ${visibleSections.section3 ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}>
                     <h4 className="text-xl font-bold text-white mb-4">Emergency Features</h4>
                     <div className="space-y-3">
                       <div className={`flex items-center space-x-3 transform transition-all duration-700 delay-500 ${visibleSections.section3 ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}>
@@ -371,9 +395,9 @@ export function SummitShowcase() {
                     Your browser does not support the video tag.
                   </video>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                  <div className="absolute bottom-6 right-6 w-20 h-20 border-2 border-yellow-400 rounded-full flex items-center justify-center bg-black/60 backdrop-blur-sm">
-                    <div className="text-yellow-400 text-xs font-bold text-center">
-                      NEVER<br/>LOST
+                  <div className="absolute bottom-6 right-6 w-20 h-20 border-2 border-orange-400 rounded-full flex items-center justify-center bg-black/60 backdrop-blur-sm">
+                    <div className="text-orange-400 text-xs font-bold text-center">
+                      NEVER<br />LOST
                     </div>
                   </div>
                 </div>
@@ -382,12 +406,13 @@ export function SummitShowcase() {
           </div>
         </div>
 
+
         <div className={`text-center transform transition-all duration-1000 delay-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
           <div className="mb-8">
             <h4 className="text-3xl font-bold text-white mb-4">Ready to Conquer Your Summit?</h4>
             <p className="text-white/70 text-lg">Join thousands of adventurers who trust Fenix Summit Edition</p>
           </div>
-          <button className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold text-xl px-12 py-6 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/25">
+          <button className="bg-orange-400 hover:bg-orange-300 text-black font-bold text-xl px-12 py-6 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-orange-400/25">
             Pre-Order Your Summit Edition
           </button>
           <div className="mt-4 text-white/60 text-sm">Free shipping worldwide • 30-day returns</div>
