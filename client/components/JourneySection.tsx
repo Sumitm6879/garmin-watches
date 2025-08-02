@@ -7,13 +7,13 @@ interface JourneySectionProps {
   reverse?: boolean;
 }
 
-export function JourneySection({ 
-  title, 
-  description, 
-  feature, 
-  imageSrc, 
-  imageAlt, 
-  reverse = false 
+export function JourneySection({
+  title,
+  description,
+  feature,
+  imageSrc,
+  imageAlt,
+  reverse = false
 }: JourneySectionProps) {
   return (
     <section className="py-32 overflow-hidden">
@@ -30,7 +30,7 @@ export function JourneySection({
               <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-transparent"></div>
             </div>
           </div>
-          
+
           {/* Content */}
           <div className={`${reverse ? 'lg:col-start-1' : ''}`}>
             <div className="max-w-lg">
