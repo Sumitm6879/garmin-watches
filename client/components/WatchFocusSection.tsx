@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface WatchData {
   title: string;
@@ -14,6 +14,8 @@ interface WatchFocusSectionProps {
 
 export function WatchFocusSection({ watches }: WatchFocusSectionProps) {
   const carouselRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   // Progressive text stages
   const textStages = [
@@ -35,6 +37,32 @@ export function WatchFocusSection({ watches }: WatchFocusSectionProps) {
     "CONQUER YOUR SUMMI",
     "CONQUER YOUR SUMMIT"
   ];
+
+  // Scroll-based collapse effect - ALL STAGES COLLAPSE EXCEPT FINAL
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+
+      const rect = sectionRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const sectionHeight = rect.height;
+      
+      // Calculate scroll progress (0 = top of section visible, 1 = bottom of section reached)
+      let progress = 0;
+      
+      if (rect.top <= 0) {
+        // Section is being scrolled past the top
+        progress = Math.min(1, Math.abs(rect.top) / (sectionHeight * 0.4));
+      }
+      
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Optimized distribution for larger datasets
   const createOptimalDistribution = (sourceArray: WatchData[], rowIndex: number) => {
@@ -124,33 +152,61 @@ export function WatchFocusSection({ watches }: WatchFocusSectionProps) {
   };
 
   return (
-    <section className="relative min-h-screen py-20 overflow-hidden bg-gradient-to-br from-background via-background/95 to-secondary/20">
+    <section 
+      ref={sectionRef}
+      className="relative min-h-screen py-20 overflow-hidden bg-gradient-to-br from-background via-background/95 to-secondary/20"
+    >
       {/* Lighter animated background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-800/30 via-transparent to-gray-700/20" />
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-600/10 to-transparent animate-pulse" />
       </div>
 
-      {/* Progressive Text Build - FIXED SINGLE LINE */}
+      {/* Progressive Text Build - ALL STAGES COLLAPSE TO FINAL SENTENCE */}
       <div className="absolute top-20 left-4 z-20">
         <div className="max-w-6xl">
           <div className="text-left">
-            {/* Progressive text stages - FIXED WRAPPING */}
+            {/* Progressive text stages - COMPLETE COLLAPSE LOGIC */}
             <div className="space-y-2">
-              {textStages.map((text, index) => (
-                <div
-                  key={index}
-                  className={`font-bold tracking-tight drop-shadow-2xl leading-tight whitespace-nowrap ${
-                    index === 0 
-                      ? 'text-6xl md:text-8xl lg:text-9xl xl:text-[10rem] text-white' // First line "C" - WHITE
-                      : index === textStages.length - 1
-                      ? 'text-3xl md:text-5xl lg:text-6xl xl:text-7xl text-accent' // Last line - SMALLER but SINGLE LINE
-                      : 'text-3xl md:text-5xl lg:text-6xl xl:text-7xl text-white/60' // Middle lines - faded white
-                  }`}
-                >
-                  {text}
-                </div>
-              ))}
+              {textStages.map((text, index) => {
+                const totalStages = textStages.length;
+                const isLastStage = index === totalStages - 1;
+                
+                // Calculate visibility based on scroll progress
+                let opacity = 1;
+                let slideOffset = 0;
+                
+                if (isLastStage) {
+                  // Last stage (complete sentence) - fade in as scroll progresses
+                  opacity = Math.min(1, scrollProgress * 2); // Fade in gradually
+                } else {
+                  // All other stages - fade out as scroll progresses
+                  const fadeThreshold = (index / (totalStages - 1)) * 0.8;
+                  if (scrollProgress > fadeThreshold) {
+                    opacity = Math.max(0, 1 - ((scrollProgress - fadeThreshold) / 0.2));
+                    slideOffset = -75 * ((scrollProgress - fadeThreshold) / 0.2);
+                  }
+                }
+                
+                return (
+                  <div
+                    key={index}
+                    className={`font-bold tracking-tight drop-shadow-2xl leading-tight whitespace-nowrap transition-all duration-300 ease-out ${
+                      index === 0 
+                        ? 'text-6xl md:text-8xl lg:text-9xl xl:text-[10rem] text-white' // First line "C" - WHITE
+                        : isLastStage
+                        ? 'text-3xl md:text-5xl lg:text-6xl xl:text-7xl text-accent' // Last line - ORANGE
+                        : 'text-3xl md:text-5xl lg:text-6xl xl:text-7xl text-white/60' // Middle lines - faded white
+                    }`}
+                    style={{
+                      opacity: opacity,
+                      transform: `translateX(${slideOffset}px) translateY(${slideOffset / 2}px)`,
+                    }}
+                  >
+                    {text}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
